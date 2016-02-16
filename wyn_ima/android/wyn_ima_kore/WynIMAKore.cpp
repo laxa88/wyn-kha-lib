@@ -3,27 +3,40 @@
 
 namespace WynIMAKore
 {
+	static ANativeActivity* kactivity;
+	static JNIEnv* env;
+	static jclass cls;
+
+	void attachThread ()
+	{
+		kactivity->vm->AttachCurrentThread(&env, NULL);
+		cls = KoreAndroid::findClass(env, "wyn_ima_kore.WynIMAKore");
+	}
+
+	void detachThread ()
+	{
+		kactivity->vm->DetachCurrentThread();
+	}
+
 	void init ()
 	{
-		JNIEnv* env;
-		KoreAndroid::getActivity()->vm->AttachCurrentThread(&env, NULL);
-		jclass cls = KoreAndroid::findClass(env, "wyn_ima_kore.WynIMAKore");
+		kactivity = KoreAndroid::getActivity();
+
+		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "init", "()V");
 		env->CallStaticVoidMethod(cls, methodId);
 
-		KoreAndroid::getActivity()->vm->DetachCurrentThread();
+		detachThread();
 	}
 
 	void show ()
 	{
-		JNIEnv* env;
-		KoreAndroid::getActivity()->vm->AttachCurrentThread(&env, NULL);
-		jclass cls = KoreAndroid::findClass(env, "wyn_ima_kore.WynIMAKore");
+		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "show", "()V");
 		env->CallStaticVoidMethod(cls, methodId);
 
-		KoreAndroid::getActivity()->vm->DetachCurrentThread();
+		detachThread();
 	}
 }
