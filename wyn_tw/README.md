@@ -3,21 +3,22 @@ Simple Twitter library for Kha
 
 ## Installation
 
-- Add the following in your project's 'khafile.js':
+1. Copy the 'wyn_tw' folder to your Libraries folder
+2. Add the following in your project's 'khafile.js':
 
-	project.addLibrary('wyn_tw');
+		project.addLibrary('wyn_tw');
 
 ### HTML5
 
-- Include the code in your html5 page, e.g.:
+1. Include this code in your index.html, typically after including 'kha.js':
 
-	<script type="text/javascript" src="wyn_tw.js"></script>
+		<script type="text/javascript" src="wyn_tw.js"></script>
 
-- Copy 'wyn_tw.js' into your 'builds/html5' folder
+2. Copy 'wyn_tw.js' into your 'builds/html5' folder
 
-### Android
+### Android (Android Studio additional steps)
 
-- Copy 'wyn_tw' folder into your kha project 'Libraries' folder
+- No additional steps.
 
 ### iOS
 
@@ -25,6 +26,6 @@ Simple Twitter library for Kha
 
 ## Usage
 
-Simple, straightforward usage in your haxe code:
+1. Simple, straightforward usage in your haxe code:
 
-  wyn.WynTW.tweet(message);
+		wyn.WynTW.tweet(message);
