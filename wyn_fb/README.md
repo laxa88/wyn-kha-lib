@@ -14,6 +14,28 @@ Simple Facebook library for Kha
 
 4. (html5) Manually copy 'wyn_fb.js' from 'wyn_fb/html5' into your 'builds/html5' folder
 
+5. (html5) Don't forget to include the SDK code (directly after the opening <body>):
+
+		// refer to: https://developers.facebook.com/docs/javascript/quickstart/v2.5
+
+		<script>
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId      : 'your-app-id',
+					xfbml      : true,
+					version    : 'v2.5'
+				});
+			};
+
+			(function(d, s, id){
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {return;}
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/sdk.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+
 ### Android
 
 Reference:
