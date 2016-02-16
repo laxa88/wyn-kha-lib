@@ -3,24 +3,37 @@
 
 namespace WynGAKore
 {
+	static ANativeActivity* kactivity;
+	static JNIEnv* env;
+	static jclass cls;
+
+	void attachThread ()
+	{
+		kactivity->vm->AttachCurrentThread(&env, NULL);
+		cls = KoreAndroid::findClass(env, "wyn_ga_kore.WynGAKore");
+	}
+
+	void detachThread ()
+	{
+		kactivity->vm->DetachCurrentThread();
+	}
+	
 	void init (const char* id)
 	{
-		JNIEnv* env;
-		KoreAndroid::getActivity()->vm->AttachCurrentThread(&env, NULL);
-		jclass cls = KoreAndroid::findClass(env, "wyn_ga_kore.WynGAKore");
+		kactivity = KoreAndroid::getActivity();
+
+		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "init", "(Ljava/lang/String;)V");
 		jstring jid = env->NewStringUTF(id);
 		env->CallStaticVoidMethod(cls, methodId, jid);
 
-		KoreAndroid::getActivity()->vm->DetachCurrentThread();
+		detachThread();
 	}
 
 	void sendEvent (const char* category, const char* action, const char* label, const char* value)
 	{
-		JNIEnv* env;
-		KoreAndroid::getActivity()->vm->AttachCurrentThread(&env, NULL);
-		jclass cls = KoreAndroid::findClass(env, "wyn_ga_kore.WynGAKore");
+		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "sendEvent", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
 		jstring jcategory = env->NewStringUTF(category);
@@ -29,14 +42,12 @@ namespace WynGAKore
 		jstring jvalue = env->NewStringUTF(value);
 		env->CallStaticVoidMethod(cls, methodId, jcategory, jaction, jlabel, jvalue);
 
-		KoreAndroid::getActivity()->vm->DetachCurrentThread();
+		detachThread();
 	}
 
 	void sendSocial (const char* network, const char* action, const char* target)
 	{
-		JNIEnv* env;
-		KoreAndroid::getActivity()->vm->AttachCurrentThread(&env, NULL);
-		jclass cls = KoreAndroid::findClass(env, "wyn_ga_kore.WynGAKore");
+		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "sendSocial", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
 		jstring jnetwork = env->NewStringUTF(network);
@@ -44,14 +55,12 @@ namespace WynGAKore
 		jstring jtarget = env->NewStringUTF(target);
 		env->CallStaticVoidMethod(cls, methodId, jnetwork, jaction, jtarget);
 
-		KoreAndroid::getActivity()->vm->DetachCurrentThread();
+		detachThread();
 	}
 
 	void sendTiming (const char* category, const char* variable, const char* value, const char* label)
 	{
-		JNIEnv* env;
-		KoreAndroid::getActivity()->vm->AttachCurrentThread(&env, NULL);
-		jclass cls = KoreAndroid::findClass(env, "wyn_ga_kore.WynGAKore");
+		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "sendTiming", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
 		jstring jcategory = env->NewStringUTF(category);
@@ -60,6 +69,6 @@ namespace WynGAKore
 		jstring jlabel = env->NewStringUTF(label);
 		env->CallStaticVoidMethod(cls, methodId, jcategory, jvariable, jvalue, jlabel);
 
-		KoreAndroid::getActivity()->vm->DetachCurrentThread();
+		detachThread();
 	}
 }
