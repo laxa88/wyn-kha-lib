@@ -19,7 +19,7 @@ Unity Ads only works for mobile targets (iOS, Android).
 3. Right-click "app" folder in Project View > Open Module Settings
 4. In the Dependencies Tab, click "+" > Module Dependency > Unity Ads module > Finish
 
-When rebuilding the project, the unityads module link may be broken, but attempting to reinstall will cause errors. My manual way of fix is, just delete the 'unityads' folder in path/to/game-project/builds/android-native-build/game-project/ folder, and repeat steps 1 to 4 above.
+When rebuilding the project, the unityads module link may be broken, but attempting to reinstall will cause errors. My manual way of fix is, just delete the 'unityads' folder in path/to/game-project/builds/android-native-build/game-project/ folder, and repeat steps 2 to 4 above.
 
 Installation and usage reference:
 
