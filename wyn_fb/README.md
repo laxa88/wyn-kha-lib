@@ -8,13 +8,15 @@ Simple Facebook library for Kha
 
 		project.addLibrary('wyn_fb');
 
-3. (html5) Include this code in your index.html, typically after including 'kha.js':
+### HTML5 (additional steps)
+
+1. Include this code in your index.html, typically after including 'kha.js':
 
 		<script type="text/javascript" src="wyn_fb.js"></script>
 
-4. (html5) Manually copy 'wyn_fb.js' from 'wyn_fb/html5' into your 'builds/html5' folder
+2. Manually copy 'wyn_fb.js' from 'wyn_fb/html5' into your 'builds/html5' folder
 
-5. (html5) Don't forget to include the SDK code (directly after the opening <body>):
+3. Don't forget to include the SDK code (directly after the opening <body>):
 
 		// refer to: https://developers.facebook.com/docs/javascript/quickstart/v2.5
 
@@ -36,7 +38,7 @@ Simple Facebook library for Kha
 			}(document, 'script', 'facebook-jssdk'));
 		</script>
 
-### Android
+### Android (Android Studio additional steps)
 
 Reference:
 
