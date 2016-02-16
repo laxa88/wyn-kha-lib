@@ -8,11 +8,13 @@ public class WynIMAKore {
 	
 	public static void init (String adUnitId) {
 
+		// TODO
 		Log.d("WynLog", "WynIMAKore init");
 	}
 
 	public static void show () {
 
+		// TODO
         Log.d("WynLog", "WynIMAKore init");
 
 	}

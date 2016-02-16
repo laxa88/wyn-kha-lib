@@ -1,7 +1,5 @@
 (function() {
 
-	var canvas = document.getElementById("khanvas");
-
 	if (typeof google === 'undefined')
 		google = null;
 

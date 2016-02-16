@@ -20,7 +20,7 @@ class WynIMA
 	@:functionCode('WynIMAKore::init();')
 	public static function init () : Void {}
 
-	@:functionCode('WynIMAKore::toggle();')
+	@:functionCode('WynIMAKore::show();')
 	public static function show () : Void {}
 }
 
