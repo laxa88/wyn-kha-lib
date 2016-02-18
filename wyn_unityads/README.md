@@ -33,6 +33,10 @@ Installation and usage reference:
 
 Simple, straightforward usage in your haxe code:
 
-	wyn.WynUnityAds.init("ad-id");
+	// init
+	wyn.WynUnityAds.setCallbacks( ... );
+	wyn.WynUnityAds.init("ad-id"); // will fetch the first ad upon init
+
+	// show ad
 	wyn.WynUnityAds.setZone("zone-id"); // optional
     wyn.WynUnityAds.show();

@@ -10,12 +10,6 @@ package wyn;
 
 class WynUnityAds
 {
-	@:functionCode('WynUnityAdsKore::attachThread();')
-	public static function attachThread () : Void {}
-
-	@:functionCode('WynUnityAdsKore::detachThread();')
-	public static function detachThread () : Void {}
-
 	@:functionCode('WynUnityAdsKore::init(id);')
 	public static function init (id:String) : Void {}
 
@@ -36,14 +30,15 @@ class WynUnityAds
 
 	@:functionCode('WynUnityAdsKore::show();')
 	public static function show () : Void {}
+
+	@:functionCode('WynUnityAdsKore::setCallbacks(onHide,onShow,onVideoStarted,onVideoCompleted,onFetchCompleted,onFetchFailed);')
+	public static function setCallbacks (onHide:Void->Void, onShow:Void->Void, onVideoStarted:Void->Void, onVideoCompleted:String->Bool->Void, onFetchCompleted:Void->Void, onFetchFailed:Void->Void) {}
 }
 
 #else
 
 class WynUnityAds
 {
-    public static function attachThread () : Void {}
-	public static function detachThread () : Void {}
 	public static function init (id:String) : Void {}
 	public static function changeActivity () : Void {}
 	public static function setDebugMode (val:Bool) : Void {}
