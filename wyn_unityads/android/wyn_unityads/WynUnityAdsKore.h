@@ -24,6 +24,10 @@ namespace WynUnityAdsKore
 	extern "C" JNIEXPORT void JNICALL Java_wyn_1unityads_WynUnityAdsKore_NativeOnFetchCompleted( JNIEnv* pEnv, jobject jCaller );
 	extern "C" JNIEXPORT void JNICALL Java_wyn_1unityads_WynUnityAdsKore_NativeOnFetchFailed( JNIEnv* pEnv, jobject jCaller );
 
+	// References
+	// https://github.com/openfl/openfl-native/issues/216
+	// https://github.com/haxenme/nme/blob/master/project/src/android/AndroidCommon.h#L19
+	// https://github.com/haxenme/nme/blob/master/project/src/android/AndroidFrame.cpp#L754
 	struct AutoHaxe
 	{
 		int base;

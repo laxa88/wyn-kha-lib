@@ -13,11 +13,6 @@ public class WynUnityAdsKore implements IUnityAdsListener {
 
 	static KoreActivity kactivity;
 	static WynUnityAdsKore instance;
-	public static Boolean adReady = false;
-	public static Boolean adShowing = false;
-
-
-
 
 	public static void init (String id) {
 		kactivity = KoreActivity.getInstance();
@@ -25,8 +20,6 @@ public class WynUnityAdsKore implements IUnityAdsListener {
 
 		// example: "103000"
 		UnityAds.init(kactivity, id, instance);
-
-		Log.d("WynLog", "WynUnityAdsKore init : " + id);
 	}
 
 	public static void changeActivity () {
@@ -67,10 +60,8 @@ public class WynUnityAdsKore implements IUnityAdsListener {
 
 	public static void show () {
 		// Automatically checks whether ad can be shown, and if true, shows ad.
-		Log.d("WynLog", "WynUnityAdsKore show");
 		if (UnityAds.canShow()) {
 			UnityAds.show();
-			Log.d("WynLog", "WynUnityAdsKore show success");
 		}
 	}
 
@@ -84,46 +75,38 @@ public class WynUnityAdsKore implements IUnityAdsListener {
 	public native void NativeOnFetchFailed();
 
 	static {
+		// Android Studio can only compile into one module at a time,
+		// for kha, it's all in one "kore" module. So just load that up.
 		System.loadLibrary("kore");
 	}
 
     public void onHide() {
     	// Called when the Unity Ads is closed by the user
 		NativeOnHide();
-		// Toast.makeText(kactivity, "WynUnityAdsKore onHide", Toast.LENGTH_SHORT).show();
 	}
 
 	public void onShow() {
     	// Called when the Unity Ads is shown to the user
 		NativeOnShow();
-		// Toast.makeText(kactivity, "WynUnityAdsKore onShow", Toast.LENGTH_SHORT).show();
     }
 
 	public void onVideoStarted() {
     	// Called when video playback is initiated by the user
-		adShowing = true;
 		NativeOnVideoStarted();
-		// Toast.makeText(kactivity, "WynUnityAdsKore onVideoStarted", Toast.LENGTH_SHORT).show();
     }
 
 	public void onVideoCompleted(String itemKey, boolean skipped) {
     	// Called when the video playback is completed. This step also notifies you that the user should be rewarded.
-		adShowing = false;
 		NativeOnVideoCompleted(itemKey, skipped);
-		// Toast.makeText(kactivity, "WynUnityAdsKore onVideoCompleted : " + itemKey + " , " + skipped, Toast.LENGTH_SHORT).show();
     }
 
 	public void onFetchCompleted() {
     	// Called when ad content is loaded
-    	adReady = true;
 		NativeOnFetchCompleted();
-		// Toast.makeText(kactivity, "WynUnityAdsKore onFetchCompleted", Toast.LENGTH_SHORT).show();
     }
 
 	public void onFetchFailed() {
     	// Called when ad content failed to load
-    	adReady = false;
 		NativeOnFetchFailed();
-		// Toast.makeText(kactivity, "WynUnityAdsKore onFetchFailed", Toast.LENGTH_SHORT).show();
     }
 }

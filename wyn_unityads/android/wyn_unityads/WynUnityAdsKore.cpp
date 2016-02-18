@@ -1,4 +1,3 @@
-#include <android/log.h>
 #include "WynUnityAdsKore.h"
 
 namespace WynUnityAdsKore
@@ -103,8 +102,6 @@ namespace WynUnityAdsKore
 
 	void setCallbacks (Dynamic onHide, Dynamic onShow, Dynamic onVideoStarted, Dynamic onVideoCompleted, Dynamic onFetchCompleted, Dynamic onFetchFailed)
 	{
-		// __android_log_print(ANDROID_LOG_INFO, "GAME", "#something wynunityadskore setCallbacks");
-
 		NativeOnHide = onHide;
 		NativeOnShow = onShow;
 		NativeOnVideoStarted = onVideoStarted;
