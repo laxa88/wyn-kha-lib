@@ -46,6 +46,7 @@ class WynUnityAds
 	public static function setZone (zone:String) : Void {}
 	public static function canShow () : Bool { return false; }
 	public static function show () : Void {}
+	public static function setCallbacks (onHide:Void->Void, onShow:Void->Void, onVideoStarted:Void->Void, onVideoCompleted:String->Bool->Void, onFetchCompleted:Void->Void, onFetchFailed:Void->Void) {}
 }
 
 #end
