@@ -75,7 +75,7 @@ namespace WynUnityAdsKore
 	{
 		attachThread();
 
-		jmethodID methodId = env->GetStaticMethodID(cls, "canShow", "()V");
+		jmethodID methodId = env->GetStaticMethodID(cls, "canShow", "()Z");
 		jboolean result = env->CallStaticBooleanMethod(cls, methodId);
 
 		detachThread();

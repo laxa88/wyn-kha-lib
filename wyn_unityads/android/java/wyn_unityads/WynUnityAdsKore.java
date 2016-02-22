@@ -52,7 +52,7 @@ public class WynUnityAdsKore implements IUnityAdsListener {
 		UnityAds.setZone(zone);
 	}
 
-	public static Boolean canShow () {
+	public static boolean canShow () {
 		// This is already used in show(), but as a safety
 		// measure, you can still use this to pre-check.
 		return UnityAds.canShow();
