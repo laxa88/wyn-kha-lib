@@ -1,4 +1,4 @@
-#include <WynGAKore.h>
+#include <WynNativeUtilKore.h>
 #include <Kore/Android.h>
 
 namespace WynNativeUtilKore
