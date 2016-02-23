@@ -96,7 +96,7 @@ public class WynAdmobKore {
 			public void onAdLoaded() {
 
 				Log.d("WynLog", "Ad banner loaded");
-				Toast.makeText(kactivity, "Ad banner loaded", Toast.LENGTH_LONG).show();
+				// Toast.makeText(kactivity, "Ad banner loaded", Toast.LENGTH_LONG).show();
 
 				// TODO
 			}
@@ -247,7 +247,7 @@ public class WynAdmobKore {
 			public void onAdLoaded() {
 
 				Log.d("WynLog", "interstitial onAdLoaded");
-				Toast.makeText(kactivity, "interstitial onAdLoaded", Toast.LENGTH_SHORT).show();
+				// Toast.makeText(kactivity, "interstitial onAdLoaded", Toast.LENGTH_SHORT).show();
 
 				// TODO don't show immediately. Do a callback and let user handle manually.
 				interstitial.show();
@@ -255,13 +255,13 @@ public class WynAdmobKore {
 
 			public void onAdFailedToLoad(int errorcode) {
 				Log.d("WynLog", "interstitial onAdFailedToLoad: " + errorcode);
-				Toast.makeText(kactivity, "onAdFailedToLoad", Toast.LENGTH_SHORT).show();
+				// Toast.makeText(kactivity, "onAdFailedToLoad", Toast.LENGTH_SHORT).show();
 				// TODO Do a callback and let user handle manually.
 			}
 
 			public void onAdClosed() {
 				Log.d("WynLog", "onAdClosed");
-				Toast.makeText(kactivity, "interstitial onAdClosed", Toast.LENGTH_SHORT).show();
+				// Toast.makeText(kactivity, "interstitial onAdClosed", Toast.LENGTH_SHORT).show();
 				// TODO Do a callback and let user handle manually.
 			}
 		});
@@ -270,7 +270,7 @@ public class WynAdmobKore {
 			public void run() {
 
 				Log.d("WynLog", "createInterstitial");
-				Toast.makeText(kactivity, "createInterstitial", Toast.LENGTH_SHORT).show();
+				// Toast.makeText(kactivity, "createInterstitial", Toast.LENGTH_SHORT).show();
 				interstitial.loadAd(adReq);
 
 			}
