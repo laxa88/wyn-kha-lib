@@ -1,8 +1,6 @@
 package wyn_unityads;
 
-import android.util.Log;
-// import android.widget.Toast;
-
+//import android.widget.Toast;
 import com.ktxsoftware.kore.KoreActivity;
 import com.unity3d.ads.android.IUnityAdsListener;
 import com.unity3d.ads.android.UnityAds;
@@ -27,7 +25,7 @@ public class WynUnityAdsKore implements IUnityAdsListener {
 		UnityAds.changeActivity(kactivity);
 	}
 
-	public static void setDebugMode (Boolean val) {
+	public static void setDebugMode (boolean val) {
 		// You can turn on debug mode on get a more verbose print of
 		// what happens in UnityAds while integration. You will need
 		// to recompile the SDK in order to get debug mode working
@@ -36,7 +34,7 @@ public class WynUnityAdsKore implements IUnityAdsListener {
 		UnityAds.setDebugMode(val);
 	}
 
-	public static void setTestMode (Boolean val) {
+	public static void setTestMode (boolean val) {
 		// The test mode will ensure a limitless supply of test ads
 		// for integration test purposes
 		UnityAds.setTestMode(val);
@@ -83,30 +81,36 @@ public class WynUnityAdsKore implements IUnityAdsListener {
     public void onHide() {
     	// Called when the Unity Ads is closed by the user
 		NativeOnHide();
+		// Toast.makeText(kactivity, "onHide", Toast.LENGTH_SHORT).show();
 	}
 
 	public void onShow() {
     	// Called when the Unity Ads is shown to the user
 		NativeOnShow();
+		// Toast.makeText(kactivity, "onShow", Toast.LENGTH_SHORT).show();
     }
 
 	public void onVideoStarted() {
     	// Called when video playback is initiated by the user
 		NativeOnVideoStarted();
+		// Toast.makeText(kactivity, "onVideoStarted", Toast.LENGTH_SHORT).show();
     }
 
 	public void onVideoCompleted(String itemKey, boolean skipped) {
     	// Called when the video playback is completed. This step also notifies you that the user should be rewarded.
 		NativeOnVideoCompleted(itemKey, skipped);
+		// Toast.makeText(kactivity, "onVideoCompleted : " + itemKey + "," + skipped, Toast.LENGTH_SHORT).show();
     }
 
 	public void onFetchCompleted() {
     	// Called when ad content is loaded
 		NativeOnFetchCompleted();
+		// Toast.makeText(kactivity, "onFetchCompleted", Toast.LENGTH_SHORT).show();
     }
 
 	public void onFetchFailed() {
     	// Called when ad content failed to load
 		NativeOnFetchFailed();
+		// Toast.makeText(kactivity, "onFetchFailed", Toast.LENGTH_SHORT).show();
     }
 }

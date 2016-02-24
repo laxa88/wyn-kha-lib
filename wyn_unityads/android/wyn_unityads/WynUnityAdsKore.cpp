@@ -1,24 +1,44 @@
 #include "WynUnityAdsKore.h"
+#include <android/log.h>
+
+#undef LOG
+#define LOG(msg,args...) __android_log_print(ANDROID_LOG_INFO, "#_# WynUnityAdsKore", msg, ## args)
 
 namespace WynUnityAdsKore
 {
 	static ANativeActivity* kactivity;
 	static JNIEnv* env;
 	static jclass cls;
+	static pthread_key_t s_thread_key;
 
 	void attachThread ()
 	{
-		kactivity->vm->AttachCurrentThread(&env, NULL);
+		int getEnvStat = kactivity->vm->GetEnv((void**)&env, JNI_VERSION_1_4);
+		if (getEnvStat == JNI_EDETACHED)
+		{
+			LOG("attachThread");
+
+			if (kactivity->vm->AttachCurrentThread(&env, 0) != 0)
+				LOG("Failed to attach");
+
+			pthread_key_create(&s_thread_key, detachThread);
+			pthread_setspecific (s_thread_key, &env);
+		}
+
 		cls = KoreAndroid::findClass(env, "wyn_unityads.WynUnityAdsKore");
 	}
 
-	void detachThread ()
+	void detachThread (void *env)
 	{
+		// LOG("detachThread");
+
 		kactivity->vm->DetachCurrentThread();
 	}
 
 	void init (const char* id)
 	{
+		// LOG("init");
+
 		kactivity = KoreAndroid::getActivity();
 
 		attachThread();
@@ -26,71 +46,69 @@ namespace WynUnityAdsKore
 		jmethodID methodId = env->GetStaticMethodID(cls, "init", "(Ljava/lang/String;)V");
 		jstring jid = env->NewStringUTF(id);
 		env->CallStaticVoidMethod(cls, methodId, jid);
-
-		detachThread();
 	}
 
 	void changeActivity ()
 	{
+		// LOG("changeActivity");
+
 		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "changeActivity", "()V");
 		env->CallStaticVoidMethod(cls, methodId);
-
-		detachThread();
 	}
 
 	void setDebugMode (bool val)
 	{
+		// LOG("setDebugMode");
+
 		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "setDebugMode", "(Z)V");
 		env->CallStaticVoidMethod(cls, methodId, val);
-
-		detachThread();
 	}
 
 	void setTestMode (bool val)
 	{
+		// LOG("setTestMode");
+
 		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "setTestMode", "(Z)V");
 		env->CallStaticVoidMethod(cls, methodId, val);
-
-		detachThread();
 	}
 
 	void setZone (const char* zone)
 	{
+		// LOG("setZone");
+
 		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "setZone", "(Ljava/lang/String;)V");
 		jstring jzone = env->NewStringUTF(zone);
 		env->CallStaticVoidMethod(cls, methodId, jzone);
-
-		detachThread();
 	}
 
 	bool canShow ()
 	{
+		// LOG("canShow");
+
 		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "canShow", "()Z");
 		jboolean result = env->CallStaticBooleanMethod(cls, methodId);
-
-		detachThread();
 
 		return result;
 	}
 
 	void show ()
 	{
+		// LOG("show");
+
 		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "show", "()V");
 		env->CallStaticVoidMethod(cls, methodId);
-
-		detachThread();
 	}
 
 	Dynamic NativeOnHide;

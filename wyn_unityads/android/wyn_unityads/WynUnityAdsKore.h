@@ -7,7 +7,7 @@
 namespace WynUnityAdsKore
 {
 	void attachThread ();
-	void detachThread ();
+	void detachThread (void *env);
 	void init (const char* id);
 	void changeActivity ();
 	void setDebugMode (bool val);
