@@ -7,10 +7,11 @@ Adbmob only works for mobile targets (iOS, Android).
 
 ## Installation
 
-1. Copy the 'wyn_admob' folder to your Libraries folder
+1. Copy the 'wyn_admob' and 'wyn_common' folder to your Libraries folder
 2. Add the following in your project's 'khafile.js':
 
 		project.addLibrary('wyn_admob');
+		project.addLibrary('wyn_common');
 
 ### Android (Android Studio additional steps)
 

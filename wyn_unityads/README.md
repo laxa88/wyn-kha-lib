@@ -7,10 +7,11 @@ Unity Ads only works for mobile targets (iOS, Android).
 
 ## Installation
 
-1. Copy the 'wyn_unityads' folder to your Libraries folder
+1. Copy the 'wyn_unityads' and 'wyn_common' folder to your Libraries folder
 2. Add the following in your project's 'khafile.js':
 
 		project.addLibrary('wyn_unityads');
+		project.addLibrary('wyn_common');
 
 ### Android (Android Studio additional steps)
 
