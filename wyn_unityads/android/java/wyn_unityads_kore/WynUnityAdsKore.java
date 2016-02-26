@@ -1,4 +1,4 @@
-package wyn_unityads;
+package wyn_unityads_kore;
 
 //import android.widget.Toast;
 import com.ktxsoftware.kore.KoreActivity;

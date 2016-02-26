@@ -1,4 +1,5 @@
 #include <WynAdmobKore.h>
+#include <WynCommonKore.h>
 #include <Kore/Android.h>
 #include <android/log.h>
 
@@ -7,50 +8,37 @@
 
 namespace WynAdmobKore
 {
-	static ANativeActivity* kactivity;
 	static JNIEnv* env;
 	static jclass cls;
-	static pthread_key_t s_thread_key;
 
 	void attachThread ()
 	{
-		int getEnvStat = kactivity->vm->GetEnv((void**)&env, JNI_VERSION_1_4);
-		if (getEnvStat == JNI_EDETACHED)
-		{
-			// LOG("attachThread");
-
-			if (kactivity->vm->AttachCurrentThread(&env, 0) != 0)
-				LOG("Failed to attach");
-
-			pthread_key_create(&s_thread_key, detachThread);
-			pthread_setspecific (s_thread_key, &env);
-		}
-
+		env = WynCommonKore::attachThread();
 		cls = KoreAndroid::findClass(env, "wyn_admob_kore.WynAdmobKore");
 	}
 
-	void detachThread (void *env)
+	void detachThread ()
 	{
-		// LOG("detachThread");
-
-		kactivity->vm->DetachCurrentThread();
+		WynCommonKore::detachThread();
 	}
 
 	void init ()
 	{
-		// LOG("init");
+		LOG("init");
 
-		kactivity = KoreAndroid::getActivity();
+		WynCommonKore::init();
 
 		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "init", "()V");
 		env->CallStaticVoidMethod(cls, methodId);
+
+		detachThread();
 	}
 
 	void createBanner (const char* adName, const char* adUnitId, const char* adType, const char* adGravity)
 	{
-		// LOG("createBanner");
+		LOG("createBanner");
 
 		attachThread();
 
@@ -60,22 +48,26 @@ namespace WynAdmobKore
 		jstring jadType = env->NewStringUTF(adType);
 		jstring jadGravity = env->NewStringUTF(adGravity);
 		env->CallStaticVoidMethod(cls, methodId, jadName, jadUnitId, jadType, jadGravity);
+
+		detachThread();
 	}
 
 	void toggleBanner (const char* adName, bool visible)
 	{
-		// LOG("toggleBanner");
+		LOG("toggleBanner");
 
 		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "toggleBanner", "(Ljava/lang/String;Z)V");
 		jstring jadName = env->NewStringUTF(adName);
 		env->CallStaticVoidMethod(cls, methodId, jadName, visible);
+
+		detachThread();
 	}
 
 	void createInterstitial (const char* adName, const char* adUnitId)
 	{
-		// LOG("createInterstitial");
+		LOG("createInterstitial");
 
 		attachThread();
 
@@ -83,5 +75,7 @@ namespace WynAdmobKore
 		jstring jadName = env->NewStringUTF(adName);
 		jstring jadUnitId = env->NewStringUTF(adUnitId);
 		env->CallStaticVoidMethod(cls, methodId, jadName, jadUnitId);
+
+		detachThread();
 	}
 }
