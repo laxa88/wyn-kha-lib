@@ -9,7 +9,7 @@ namespace WynCommonKore
 	static ANativeActivity* kactivity;
 	static pthread_key_t s_thread_key;
 	static bool isInit = false;
-	static int threadCount = 0;
+	static bool attached = false;
 
 	void init ()
 	{
@@ -32,12 +32,11 @@ namespace WynCommonKore
 
 	JNIEnv* attachThread ()
 	{
-		threadCount++;
-
 		JNIEnv *env;
 		int getEnvStat = kactivity->vm->GetEnv((void**)&env, JNI_VERSION_1_4);
 		if (getEnvStat == JNI_EDETACHED)
 		{
+			attached = true;
 			LOG("attachThread - new thread");
 			if (kactivity->vm->AttachCurrentThread(&env, 0) != 0)
 				LOG("Failed to attach");
@@ -46,6 +45,7 @@ namespace WynCommonKore
 		}
 		else
 		{
+			attached = false;
 			LOG("attachThread - get existing");
 		}
 
@@ -54,12 +54,13 @@ namespace WynCommonKore
 
 	void detachThread ()
 	{
-		LOG("detachThread");
-
-		threadCount--;
-
 		// Don't detach if there is still code running on thread
-		if (threadCount <= 0)
+		if (attached) {
+			LOG("detachThread YES");
 			kactivity->vm->DetachCurrentThread();
+		}
+		else {
+			LOG("detachThread NO");
+		}
 	}
 }

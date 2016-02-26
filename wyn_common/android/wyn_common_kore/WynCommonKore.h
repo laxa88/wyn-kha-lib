@@ -1,6 +1,10 @@
 #pragma once
 #include <Kore/Android.h>
 #include <hx/CFFI.h>
+#include <android/log.h>
+
+#undef LOG
+#define LOG(msg,args...) __android_log_print(ANDROID_LOG_INFO, "#_# WynCommonKore", msg, ## args)
 
 namespace WynCommonKore
 {
@@ -21,13 +25,14 @@ namespace WynCommonKore
 		{
 			base = 0;
 			message = inMessage;
-			gc_set_top_of_stack(&base,true);
-			//__android_log_print(ANDROID_LOG_VERBOSE, "NME", "Enter %s %p", message, pthread_self());
+			gc_set_top_of_stack(&base, true);
+
+			LOG("AutoHaxe Enter %s %p", message, pthread_self());
 		}
 		~AutoHaxe()
 		{
-			//__android_log_print(ANDROID_LOG_VERBOSE, "NME", "Leave %s %p", message, pthread_self());
-			gc_set_top_of_stack(0,true);
+			LOG("AutoHaxe Leave %s %p", message, pthread_self());
+			gc_set_top_of_stack(0, true);
 		}
 	};
 }
