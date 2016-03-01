@@ -6,13 +6,13 @@ import android.util.Log;
 import com.ktxsoftware.kore.KoreActivity;
 
 public class WynNativeUtilKore {
-    public static void openUrl (String url) {
+	public static void openUrl (String url) {
 
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        KoreActivity activity = KoreActivity.getInstance();
-        activity.startActivity(i);
+		Intent i = new Intent(Intent.ACTION_VIEW);
+		i.setData(Uri.parse(url));
+		KoreActivity activity = KoreActivity.getInstance();
+		activity.startActivity(i);
 
-        Log.d("WynLog", "WynNativeUtilKore openUrl : " + url);
-    }
+		Log.d("WynLog", "WynNativeUtilKore openUrl : " + url);
+	}
 }
