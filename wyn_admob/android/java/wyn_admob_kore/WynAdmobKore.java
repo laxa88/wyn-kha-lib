@@ -54,6 +54,10 @@ public class WynAdmobKore {
 		ml = new LinearLayout(kactivity);
 	}
 
+	// public static void setCallbacks ()
+	// {
+	// }
+
 	public static void createBanner (String adName, String adUnitId, String adType, String adGravity) {
 
 		Log.d("WynLog", "WynAdmobKore createAd : " + adType + " , " + adUnitId + " , " + adGravity);
@@ -236,7 +240,7 @@ public class WynAdmobKore {
 		}
 	}
 
-	public static void createInterstitial (String adName, String adUnitId) {
+	public static void createInterstitial (String adUnitId) {
 
 		Log.d("WynLog", "Creating interstitial...");
 
@@ -275,5 +279,8 @@ public class WynAdmobKore {
 
 			}
 		});
+	}
+
+	public static void showInterstitial () {
 	}
 }

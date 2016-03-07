@@ -36,6 +36,10 @@ namespace WynAdmobKore
 		detachThread();
 	}
 
+	// void setCallbacks ()
+	// {
+	// }
+
 	void createBanner (const char* adName, const char* adUnitId, const char* adType, const char* adGravity)
 	{
 		LOG("createBanner");
@@ -65,16 +69,27 @@ namespace WynAdmobKore
 		detachThread();
 	}
 
-	void createInterstitial (const char* adName, const char* adUnitId)
+	void createInterstitial (const char* adUnitId)
 	{
 		LOG("createInterstitial");
 
 		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "createInterstitial", "(Ljava/lang/String;Ljava/lang/String;)V");
-		jstring jadName = env->NewStringUTF(adName);
 		jstring jadUnitId = env->NewStringUTF(adUnitId);
-		env->CallStaticVoidMethod(cls, methodId, jadName, jadUnitId);
+		env->CallStaticVoidMethod(cls, methodId, jadUnitId);
+
+		detachThread();
+	}
+
+	void showInterstitial ()
+	{
+		LOG("createInterstitial");
+
+		attachThread();
+
+		jmethodID methodId = env->GetStaticMethodID(cls, "createInterstitial", "()V");
+		env->CallStaticVoidMethod(cls, methodId);
 
 		detachThread();
 	}
