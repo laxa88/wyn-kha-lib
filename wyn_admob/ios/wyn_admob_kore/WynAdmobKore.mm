@@ -3,6 +3,7 @@
 #include <WynAdmobInterstitialDelegateVC.h>
 #include <GoogleMobileAds/GoogleMobileAds.h>
 #include <hxcpp.h>
+#include "WynAdmobCallbacks.h"
 
 namespace WynAdmobKore
 {
@@ -34,6 +35,7 @@ namespace WynAdmobKore
     GADInterstitial *interstitial;
 	WynAdmobBannerDelegateVC *bvc;
 	WynAdmobInterstitialDelegateVC *ivc;
+    WynAdmobCallbacks *callbacks;
 
 	Dynamic adViewDidReceiveAdCB;
 	Dynamic didFailToReceiveAdWithErrorCB;
@@ -59,54 +61,59 @@ namespace WynAdmobKore
 
 		bvc = [WynAdmobBannerDelegateVC new];
 		ivc = [WynAdmobInterstitialDelegateVC new];
+        callbacks = new WynAdmobCallbacks();
 	}
 
 	void setBannerCallbacks (Dynamic adViewDidReceiveAd, Dynamic didFailToReceiveAdWithError, Dynamic adViewWillPresentScreen, Dynamic adViewWillDismissScreen, Dynamic adViewDidDismissScreen, Dynamic adViewWillLeaveApplication)
 	{
-		adViewDidReceiveAdCB = adViewDidReceiveAd;
-		didFailToReceiveAdWithErrorCB = didFailToReceiveAdWithError;
-		adViewWillPresentScreenCB = adViewWillPresentScreen;
-		adViewWillDismissScreenCB = adViewWillDismissScreen;
-		adViewDidDismissScreenCB = adViewDidDismissScreen;
-		adViewWillLeaveApplicationCB = adViewWillLeaveApplication;
+        iOsType *callbacks = new iOsType();
+        //callbacks->adViewDidReceiveAdCB = adViewDidReceiveAd();
+        //[bvc setCallbacks:<#(iOsType *)#>]
+        
+		// adViewDidReceiveAdCB = adViewDidReceiveAd;
+		// didFailToReceiveAdWithErrorCB = didFailToReceiveAdWithError;
+		// adViewWillPresentScreenCB = adViewWillPresentScreen;
+		// adViewWillDismissScreenCB = adViewWillDismissScreen;
+		// adViewDidDismissScreenCB = adViewDidDismissScreen;
+		// adViewWillLeaveApplicationCB = adViewWillLeaveApplication;
 
-		bvc.adViewDidReceiveAdBlock = ^(GADBannerView* view){
-			if (adViewDidReceiveAdCB != null()) {
-                NSLog(@"### adViewDidReceiveAdCB");
-				adViewDidReceiveAdCB().Cast<void>();
-			}
-		};
+		// bvc.adViewDidReceiveAdBlock = ^(GADBannerView* view){
+		// 	if (adViewDidReceiveAdCB != null()) {
+  //               NSLog(@"### adViewDidReceiveAdCB");
+		// 		adViewDidReceiveAdCB().Cast<void>();
+		// 	}
+		// };
 
-		bvc.didFailToReceiveAdWithErrorBlock = ^(GADRequestError* error){
-			if (didFailToReceiveAdWithErrorCB != null()) {
-                NSLog(@"### didFailToReceiveAdWithErrorCB");
-				//didFailToReceiveAdWithErrorCB((String)error.localizedDescription).Cast<void>();
-			}
-		};
+		// bvc.didFailToReceiveAdWithErrorBlock = ^(GADRequestError* error){
+		// 	if (didFailToReceiveAdWithErrorCB != null()) {
+  //               NSLog(@"### didFailToReceiveAdWithErrorCB");
+		// 		//didFailToReceiveAdWithErrorCB((String)error.localizedDescription).Cast<void>();
+		// 	}
+		// };
 
-		bvc.adViewWillPresentScreenBlock = ^(GADBannerView* view){
-			if (adViewWillPresentScreenCB != null()) {
-				adViewWillPresentScreenCB().Cast<void>();
-			}
-		};
+		// bvc.adViewWillPresentScreenBlock = ^(GADBannerView* view){
+		// 	if (adViewWillPresentScreenCB != null()) {
+		// 		adViewWillPresentScreenCB().Cast<void>();
+		// 	}
+		// };
 
-		bvc.adViewWillDismissScreenBlock = ^(GADBannerView* view){
-			if (adViewWillDismissScreenCB != null()) {
-				adViewWillDismissScreenCB().Cast<void>();
-			}
-		};
+		// bvc.adViewWillDismissScreenBlock = ^(GADBannerView* view){
+		// 	if (adViewWillDismissScreenCB != null()) {
+		// 		adViewWillDismissScreenCB().Cast<void>();
+		// 	}
+		// };
 
-		bvc.adViewDidDismissScreenBlock = ^(GADBannerView* view){
-			if (adViewDidDismissScreenCB != null()) {
-				adViewDidDismissScreenCB().Cast<void>();
-			}
-		};
+		// bvc.adViewDidDismissScreenBlock = ^(GADBannerView* view){
+		// 	if (adViewDidDismissScreenCB != null()) {
+		// 		adViewDidDismissScreenCB().Cast<void>();
+		// 	}
+		// };
 
-		bvc.adViewWillLeaveApplicationBlock = ^(GADBannerView* view){
-			if (adViewWillLeaveApplicationCB != null()) {
-				adViewWillLeaveApplicationCB().Cast<void>();
-			}
-		};
+		// bvc.adViewWillLeaveApplicationBlock = ^(GADBannerView* view){
+		// 	if (adViewWillLeaveApplicationCB != null()) {
+		// 		adViewWillLeaveApplicationCB().Cast<void>();
+		// 	}
+		// };
 	}
 
 	void createBanner (const char* adName, const char* adUnitId, const char* adType, const char* adGravity)

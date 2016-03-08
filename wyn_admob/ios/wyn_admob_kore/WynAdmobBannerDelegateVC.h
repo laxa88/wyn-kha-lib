@@ -1,5 +1,9 @@
 #import <UIKit/UIKit.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
+//#import "WynAdmobCallbacks.h"
+#import "iOSHelper.h"
+
+typedef struct iOSHelper iOsType;
 
 @interface WynAdmobBannerDelegateVC : UIViewController<GADBannerViewDelegate>
 
@@ -13,5 +17,14 @@
 @property(nonatomic, strong) void (^adViewWillDismissScreenBlock)(GADBannerView*);
 @property(nonatomic, strong) void (^adViewDidDismissScreenBlock)(GADBannerView*);
 @property(nonatomic, strong) void (^adViewWillLeaveApplicationBlock)(GADBannerView*);
+//@property(nonatomic, strong) void WynAdmobCallbacks* callbacks;
+
+// - (void)adViewDidReceiveAd:(GADBannerView *)adView;
+// - (void)adView:(GADBannerView *)adView didFailToReceiveAdWithError:(GADRequestError *)error;
+// - (void)adViewWillPresentScreen:(GADBannerView *)adView;
+// - (void)adViewWillDismissScreen:(GADBannerView *)adView;
+// - (void)adViewDidDismissScreen:(GADBannerView *)adView;
+// - (void)adViewWillLeaveApplication:(GADBannerView *)adView;
+- (void)setCallbacks:(iOsType*)callback;
 
 @end
