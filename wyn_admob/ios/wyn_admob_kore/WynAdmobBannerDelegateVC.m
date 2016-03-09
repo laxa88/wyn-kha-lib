@@ -24,18 +24,21 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
 /// to the user clicking on an ad.
 - (void)adViewWillPresentScreen:(GADBannerView *)adView {
     NSLog(@"adViewWillPresentScreen");
+    if (self.adViewWillPresentScreenBlock != nil)
     self.adViewWillPresentScreenBlock(adView);
 }
 
 /// Tells the delegate that the full screen view will be dismissed.
 - (void)adViewWillDismissScreen:(GADBannerView *)adView {
     NSLog(@"adViewWillDismissScreen");
+    if (self.adViewWillDismissScreenBlock != nil)
     self.adViewWillDismissScreenBlock(adView);
 }
 
 /// Tells the delegate that the full screen view has been dismissed.
 - (void)adViewDidDismissScreen:(GADBannerView *)adView {
     NSLog(@"adViewDidDismissScreen");
+    if (self.adViewDidDismissScreenBlock != nil)
     self.adViewDidDismissScreenBlock(adView);
 }
 
@@ -43,6 +46,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
 /// the App Store), backgrounding the current app.
 - (void)adViewWillLeaveApplication:(GADBannerView *)adView {
     NSLog(@"adViewWillLeaveApplication");
+    if (self.adViewWillLeaveApplicationBlock != nil)
     self.adViewWillLeaveApplicationBlock(adView);
 }
 

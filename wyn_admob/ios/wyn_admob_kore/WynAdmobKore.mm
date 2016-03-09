@@ -6,29 +6,6 @@
 
 namespace WynAdmobKore
 {
-    // class WynAdmobCallbacks
-    // {
-    // public:
-    //     static Dynamic adViewDidReceiveAdCB;
-    //     static Dynamic didFailToReceiveAdWithErrorCB;
-    //     static Dynamic adViewWillPresentScreenCB;
-    //     static Dynamic adViewWillDismissScreenCB;
-    //     static Dynamic adViewDidDismissScreenCB;
-    //     static Dynamic adViewWillLeaveApplicationCB;
-        
-    //     static void setBannerCallbacks (Dynamic adViewDidReceiveAd, Dynamic didFailToReceiveAdWithError, Dynamic adViewWillPresentScreen, Dynamic adViewWillDismissScreen, Dynamic adViewDidDismissScreen, Dynamic adViewWillLeaveApplication)
-    //     {
-    //         adViewDidReceiveAdCB = adViewDidReceiveAd;
-    //         didFailToReceiveAdWithErrorCB = didFailToReceiveAdWithError;
-    //         adViewWillPresentScreenCB = adViewWillPresentScreen;
-    //         adViewWillDismissScreenCB = adViewWillDismissScreen;
-    //         adViewDidDismissScreenCB = adViewDidDismissScreen;
-    //         adViewWillLeaveApplicationCB = adViewWillLeaveApplication;
-    //     }
-    // };
-    
-    
-    
 	NSMutableDictionary *bannerDict;
 	GADRequest *adReq;
     GADInterstitial *interstitial;
@@ -72,15 +49,13 @@ namespace WynAdmobKore
 
 		bvc.adViewDidReceiveAdBlock = ^(GADBannerView* view){
 			if (adViewDidReceiveAdCB != null()) {
-                NSLog(@"### adViewDidReceiveAdCB");
 				adViewDidReceiveAdCB().Cast<void>();
 			}
 		};
 
 		bvc.didFailToReceiveAdWithErrorBlock = ^(GADRequestError* error){
 			if (didFailToReceiveAdWithErrorCB != null()) {
-                NSLog(@"### didFailToReceiveAdWithErrorCB");
-				//didFailToReceiveAdWithErrorCB((String)error.localizedDescription).Cast<void>();
+				didFailToReceiveAdWithErrorCB((String)error.localizedDescription).Cast<void>();
 			}
 		};
 
