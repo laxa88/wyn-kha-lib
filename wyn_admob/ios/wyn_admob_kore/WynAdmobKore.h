@@ -11,4 +11,5 @@ namespace WynAdmobKore
 	void setInterstitialCallbacks (Dynamic interstitialDidReceiveAd, Dynamic didFailToReceiveAdWithError, Dynamic interstitialWillPresentScreen, Dynamic interstitialWillDismissScreen, Dynamic interstitialDidDismissScreen, Dynamic interstitialWillLeaveApplication);
 	void createInterstitial (const char* adUnitId);
 	void showInterstitial ();
+	bool isInterstitialReady ();
 }

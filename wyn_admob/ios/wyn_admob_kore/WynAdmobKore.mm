@@ -109,6 +109,7 @@ namespace WynAdmobKore
 		GADBannerView *bannerView = [GADBannerView new];
 		bannerView.rootViewController = bvc;
 		bannerView.adUnitID = [NSString stringWithUTF8String:adUnitId];
+        // bannerView.adUnitID = [NSString stringWithUTF8String:@"ca-app-pub-3940256099942544/6300978111"]; // admob test banner
 		bannerView.adSize = size;
 		bannerView.delegate = bvc;
 		[bannerView loadRequest:adReq];
@@ -199,6 +200,7 @@ namespace WynAdmobKore
 
 		UIWindow* window = [UIApplication sharedApplication].keyWindow;
 		interstitial = [[GADInterstitial alloc] initWithAdUnitID:[NSString stringWithUTF8String:adUnitId]];
+        //interstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-3940256099942544/1033173712"]; // admob test ad
 		interstitial.delegate = ivc;
 
 		[interstitial loadRequest:adReq];
@@ -207,11 +209,20 @@ namespace WynAdmobKore
 	void showInterstitial ()
 	{
 		NSLog(@"WynAdmobKore showInterstitial");
-		if (interstitial != nil) {
+		if (interstitial != NULL) {
 			if (interstitial.isReady) {
-				[interstitial presentFromRootViewController:ivc];
+                UIWindow* window = [UIApplication sharedApplication].keyWindow;
+				[interstitial presentFromRootViewController:window.rootViewController];
 			}
 		}
 	}
 	
+	bool isInterstitialReady ()
+	{
+		NSLog(@"WynAdmobKore isInterstitialReady");
+		if (interstitial != NULL)
+			return interstitial.isReady;
+		else
+			return false;
+	}
 }
