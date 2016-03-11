@@ -4,7 +4,7 @@ if (platform === Platform.iOS)
 {
 	project.addFile('ios/wyn_admob_kore/**');
 	project.addIncludeDir('ios/wyn_admob_kore');
-	project.addLib('ios/GoogleMobileAds');
+	//project.addLib('ios/GoogleMobileAds');
 	project.addLib('AdSupport');
 	project.addLib('AudioToolbox');
 	project.addLib('AVFoundation');
