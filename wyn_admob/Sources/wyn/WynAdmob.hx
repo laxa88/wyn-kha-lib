@@ -1,5 +1,11 @@
 package wyn;
 
+// NOTES
+// - callback functions have to be static
+// - callback functions have to be stored in a global variable
+// so that the callback stays in memory when events are triggered.
+// e.g. var adReceivedCB:Void->Void = adViewDidReceiveAd;
+
 #if (sys_ios || sys_android_native)
 
 @:headerCode('
@@ -28,6 +34,9 @@ class WynAdmob
 
 	@:functionCode('WynAdmobKore::showInterstitial();')
 	public static function showInterstitial () : Void {}
+
+	@:functionCode('return WynAdmobKore::isInterstitialReady();')
+	public static function isInterstitialReady () : Bool { return false; }
 }
 
 #else
@@ -41,6 +50,7 @@ class WynAdmob
 	public static function setInterstitialCallbacks (interstitialDidReceiveAd:Void->Void, didFailToReceiveAdWithError:String->Void, interstitialWillPresentScreen:Void->Void, interstitialWillDismissScreen:Void->Void, interstitialDidDismissScreen:Void->Void, interstitialWillLeaveApplication:Void->Void) {}
 	public static function createInterstitial (adUnitId:String) : Void {}
 	public static function showInterstitial () : Void {}
+	public static function isInterstitialReady () : Bool { return false; }
 }
 
 #end
