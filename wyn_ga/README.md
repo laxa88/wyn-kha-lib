@@ -72,17 +72,17 @@ NOTE: CocoaPods installation instructions: https://developers.google.com/analyti
 
 1. in Terminal, navigate to path/to/your/game/builds/ios-build and do:
 
-	pod init
+		pod init
 
 2. open the generated Podfile and add the following inside:
 
-	target 'mygame' do
-		pod 'Google/Analytics'
-	end
+		target 'mygame' do
+			pod 'Google/Analytics'
+		end
 
 3. back in Terminal, do:
 
-	pod install
+		pod install
 
 4. In case 'pod install' fails, you have to open your Xcode project, make sure your project's General Settings > Deployment Target is '7.0' or higher (Default Kha value is 6.0)
 
