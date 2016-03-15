@@ -16,9 +16,8 @@ extern class WynTW
 
 class WynTW
 {
-	@:functionCode('WynTWKore::tweet(message);')
-	public static function tweet (message:String) : Void {
-	}
+	@:functionCode('WynTWKore::tweet(msg);')
+	public static function tweet (msg:String) : Void {}
 }
 
 #else

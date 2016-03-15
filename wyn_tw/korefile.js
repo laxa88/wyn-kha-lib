@@ -2,8 +2,8 @@ var project = new Project('wyn_tw');
 
 if (platform === Platform.iOS)
 {
-	// project.addFile('ios/wyn_tw_kore/**');
-	// project.addIncludeDir('ios/wyn_tw_kore');
+	project.addFile('ios/wyn_tw_kore/**');
+	project.addIncludeDir('ios/wyn_tw_kore');
 }
 else if (platform === Platform.Android)
 {
