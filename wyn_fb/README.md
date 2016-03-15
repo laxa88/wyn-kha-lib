@@ -176,4 +176,4 @@ Reference:
 
 2. Simple, straightforward usage in your haxe code:
 
-		wyn.WynFB.shareFeed("My Game Name", "My Game Description", "http://www.example.com", "http://My");
+		wyn.WynFB.shareFeed("My Game Name", "My Game Description", "http://example.com", "http://example.com/mypreviewimage.png");
