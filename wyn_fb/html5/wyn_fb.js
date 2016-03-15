@@ -18,7 +18,7 @@
 
 		},
 
-		shareFeed : function (title, desc, caption, websiteUrl, pictureUrl) {
+		shareFeed : function (title, desc, websiteUrl, pictureUrl) {
 
 			// NOTE: caption must be the URL for the link to work.
 
@@ -44,7 +44,7 @@
 						+ "&display=popup"
 						+ "&name=" + encodeURIComponent(title)
 						+ "&description=" + encodeURIComponent(desc)
-						+ "&caption=" + encodeURIComponent(caption)
+						+ "&caption=" + encodeURIComponent(websiteUrl)
 						+ "&picture=" + encodeURIComponent(pictureUrl);
 						+ "&link=" + encodeURIComponent(websiteUrl)
 						+ "&redirect_uri=" + websiteUrl;
@@ -75,7 +75,7 @@
 
 					if (title != null && title != "") opts.name = title; // defaults to HTML page <title>
 					if (desc != null && desc != "") opts.description = desc; // defaults empty
-					if (caption != null && caption != "") opts.caption = caption; // defaults to the website domain, e.g. coinflipstudios.com
+					if (websiteUrl != null && websiteUrl != "") opts.caption = websiteUrl; // defaults to the website domain, e.g. coinflipstudios.com
 
 					FB.ui(opts, function (response) {
 						// console.log("done sharing");

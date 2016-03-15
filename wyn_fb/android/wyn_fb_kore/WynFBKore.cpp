@@ -30,16 +30,16 @@ namespace WynFBKore
 		detachThread();
 	}
 
-	void shareFeed (const char* title, const char* desc, const char* caption, const char* pictureUrl)
+	void shareFeed (const char* title, const char* desc, const char* websiteUrl, const char* pictureUrl)
 	{
 		attachThread();
 
 		jmethodID methodId = env->GetStaticMethodID(cls, "shareFeed", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
 		jstring jtitle= env->NewStringUTF(title);
 		jstring jdesc = env->NewStringUTF(desc);
-		jstring jcaption = env->NewStringUTF(caption);
+		jstring jwebsiteUrl = env->NewStringUTF(websiteUrl);
 		jstring jpictureUrl = env->NewStringUTF(pictureUrl);
-		env->CallStaticVoidMethod(cls, methodId, jtitle, jdesc, jcaption, jpictureUrl);
+		env->CallStaticVoidMethod(cls, methodId, jtitle, jdesc, jwebsiteUrl, jpictureUrl);
 
 		detachThread();
 	}

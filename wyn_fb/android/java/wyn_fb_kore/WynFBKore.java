@@ -14,31 +14,6 @@ import com.facebook.share.widget.ShareDialog;
 import com.ktxsoftware.kore.KoreActivity;
 import com.facebook.FacebookSdk;
 
-/*
-
-Installation
-https://developers.facebook.com/docs/android/getting-started
-
-1) in AndroidManifest.xml, add this inside <application>:
-
-	<uses-permission android:name="android.permission.INTERNET"/>
-
-2) In app-level build.gradle, add this before 'dependencies':
-
-	repositories {
-		mavenCentral()
-	}
-
-3) In app-level build.gradle, add this in model.android (after defaultConfig)
-
-	dependencies {
-		compile 'com.facebook.android:facebook-android-sdk:4.+'
-	}
-
-4) Make sure to gradle sync doesn't produce errors
-
-*/
-
 public class WynFBKore {
 	public static void init () {
 
@@ -62,14 +37,14 @@ public class WynFBKore {
 		Log.d("WynLog", "WynFBKore init");
 	}
 
-	public static void shareFeed (String title, String desc, String caption, String pictureUrl) {
+	public static void shareFeed (String title, String desc, String websiteUrl, String pictureUrl) {
 
 		ShareLinkContent.Builder builder = new ShareLinkContent.Builder();
 		if (title != null) builder.setContentTitle(title);
 		if (desc != null) builder.setContentDescription(desc);
 		// NOTE: for android, caption is the URL of the HTML5 game's page OR the app store link, TBD by developer
 		// e.g. "http://funfe.com"
-		if (caption != null) builder.setContentUrl(Uri.parse(caption)); // e.g. "https://developers.facebook.com"
+		if (websiteUrl != null) builder.setContentUrl(Uri.parse(websiteUrl)); // e.g. "https://developers.facebook.com"
 		if (pictureUrl != null) builder.setImageUrl(Uri.parse(pictureUrl));
 		ShareLinkContent content = builder.build();
 
@@ -96,6 +71,6 @@ public class WynFBKore {
 
 		dialog.show(content);
 
-		Log.d("WynLog", "WynFBKore shareFeed : " + title + " , " + desc + " , " + caption + " , " + pictureUrl);
+		Log.d("WynLog", "WynFBKore shareFeed : " + title + " , " + desc + " , " + websiteUrl + " , " + pictureUrl);
 	}
 }
