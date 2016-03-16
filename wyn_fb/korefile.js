@@ -2,8 +2,8 @@ var project = new Project('wyn_fb');
 
 if (platform === Platform.iOS)
 {
-	// project.addFile('ios/wyn_fb_kore/**');
-	// project.addIncludeDir('ios/wyn_fb_kore');
+	project.addFile('ios/wyn_fb_kore/**');
+	project.addIncludeDir('ios/wyn_fb_kore');
 }
 else if (platform === Platform.Android)
 {

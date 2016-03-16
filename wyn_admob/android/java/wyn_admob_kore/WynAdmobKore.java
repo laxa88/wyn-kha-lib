@@ -31,17 +31,24 @@ public class WynAdmobKore {
 	private static Map<String, WynAdmobData> bannerDict;
 	private static LinearLayout ml;
 	private static ViewGroup.MarginLayoutParams viewParams;
+	private static InterstitialAd interstitial;
+	private static WynAdmobBannerListener bannerListener;
+	private static WynAdmobInterstitialListener interstitialListener;
+	private static boolean interstitialReady;
 
 
 
 	public static void init () {
 
 		kactivity = KoreActivity.getInstance();
+		bannerListener = new WynAdmobBannerListener();
+		interstitialListener = new WynAdmobInterstitialListener();
+		interstitialReady = false;
 
 		// Build the generic ad request
 		adReq = new AdRequest.Builder()
-			.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-			.addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")
+			//.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+			//.addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")
 			.build();
 
 		bannerDict = new HashMap<String, WynAdmobData>();
@@ -57,7 +64,7 @@ public class WynAdmobKore {
 
 	public static void createBanner (String adName, String adUnitId, String adType, String adGravity) {
 
-		Log.d("WynLog", "WynAdmobKore createAd : " + adType + " , " + adUnitId + " , " + adGravity);
+		Log.d("WynLog", "WynAdmobKore createAd : " + adName + " , " + adType + " , " + adUnitId + " , " + adGravity);
 
 		AdSize size = AdSize.BANNER;
 		switch (adType) {
@@ -93,22 +100,7 @@ public class WynAdmobKore {
 		AdView adView = new AdView(kactivity);
 		adView.setAdUnitId(adUnitId); // Example from google: "ca-app-pub-3940256099942544/6300978111"
 		adView.setAdSize(size);
-		adView.setAdListener(new AdListener() {
-			public void onAdLoaded() {
-
-				Log.d("WynLog", "Ad banner loaded");
-				// Toast.makeText(kactivity, "Ad banner loaded", Toast.LENGTH_LONG).show();
-
-				// TODO
-			}
-
-			public void onAdFailedToLoad(int errorcode) {
-
-				Log.d("WynLog", "Fail to get Banner: " + errorcode);
-
-				// TODO notify or callback when this happens
-			}
-		});
+		adView.setAdListener(bannerListener);
 
 
 
@@ -187,11 +179,6 @@ public class WynAdmobKore {
 				popup.setContentView(ll);
 				kactivity.setContentView(ml, viewParams);
 
-				// Show the popup window
-				// [activity > ml] > [popup > ll > adView]
-				// popup.showAtLocation(ml, uiAdGravity, 0, 0);
-				// popup.update();
-
 				// you can only load the banner's ad inside the UI thread
 				uiAdView.loadAd(adReq);
 				uiAdView.setVisibility(View.VISIBLE);
@@ -200,6 +187,8 @@ public class WynAdmobKore {
 				WynAdmobData data = new WynAdmobData();
 				data.gravity = uiAdGravity;
 				data.popup = popup;
+				data.popup.showAtLocation(ml, uiAdGravity, 0, 0); // show ad by default
+				data.popup.update();
 				bannerDict.put(uiAdName, data);
 			}
 		});
@@ -238,35 +227,13 @@ public class WynAdmobKore {
 		}
 	}
 
-	public static void createInterstitial (String adName, String adUnitId) {
+	public static void createInterstitial (String adUnitId) {
 
 		Log.d("WynLog", "Creating interstitial...");
 
-		final InterstitialAd interstitial;
 		interstitial = new InterstitialAd(kactivity);
 		interstitial.setAdUnitId(adUnitId);
-		interstitial.setAdListener(new AdListener() {
-			public void onAdLoaded() {
-
-				Log.d("WynLog", "interstitial onAdLoaded");
-				// Toast.makeText(kactivity, "interstitial onAdLoaded", Toast.LENGTH_SHORT).show();
-
-				// TODO don't show immediately. Do a callback and let user handle manually.
-				interstitial.show();
-			}
-
-			public void onAdFailedToLoad(int errorcode) {
-				Log.d("WynLog", "interstitial onAdFailedToLoad: " + errorcode);
-				// Toast.makeText(kactivity, "onAdFailedToLoad", Toast.LENGTH_SHORT).show();
-				// TODO Do a callback and let user handle manually.
-			}
-
-			public void onAdClosed() {
-				Log.d("WynLog", "onAdClosed");
-				// Toast.makeText(kactivity, "interstitial onAdClosed", Toast.LENGTH_SHORT).show();
-				// TODO Do a callback and let user handle manually.
-			}
-		});
+		interstitial.setAdListener(interstitialListener);
 
 		kactivity.runOnUiThread(new Runnable() {
 			public void run() {
@@ -277,5 +244,21 @@ public class WynAdmobKore {
 
 			}
 		});
+	}
+
+	public static void showInterstitial () {
+		kactivity.runOnUiThread(new Runnable() {
+			public void run() {
+				if (interstitial != null) {
+					if (interstitial.isLoaded()) {
+						interstitial.show();
+					}
+				}
+			}
+		});
+	}
+
+	public static boolean isInterstitialReady () {
+		return interstitialListener.isReady;
 	}
 }

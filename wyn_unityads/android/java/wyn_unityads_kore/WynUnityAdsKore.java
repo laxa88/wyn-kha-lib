@@ -20,10 +20,10 @@ public class WynUnityAdsKore implements IUnityAdsListener {
 		UnityAds.init(kactivity, id, instance);
 	}
 
-	public static void changeActivity () {
-		// use this in activity's onResume, but if behaviour is wonky, put in onCreate.
-		UnityAds.changeActivity(kactivity);
-	}
+	// public static void changeActivity () {
+	// 	// use this in activity's onResume, but if behaviour is wonky, put in onCreate.
+	// 	UnityAds.changeActivity(kactivity);
+	// }
 
 	public static void setDebugMode (boolean val) {
 		// You can turn on debug mode on get a more verbose print of

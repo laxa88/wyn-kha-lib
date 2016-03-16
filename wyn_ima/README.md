@@ -3,7 +3,9 @@ Simple Google IMA library for Kha
 
 ## TODO
 
-- Android-Native version
+- Android-native version
+- Android-java version
+- iOS version
 
 ## Installation
 

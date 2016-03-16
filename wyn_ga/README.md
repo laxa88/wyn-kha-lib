@@ -68,7 +68,29 @@ Simple Google Analytics library for Kha
 
 ### iOS
 
-- none yet
+NOTE: CocoaPods installation instructions: https://developers.google.com/analytics/devguides/collection/ios/v3/
+
+1. in Terminal, navigate to path/to/your/game/builds/ios-build and do:
+
+		pod init
+
+2. open the generated Podfile and add the following inside:
+
+		target 'mygame' do
+			pod 'Google/Analytics'
+		end
+
+3. back in Terminal, do:
+
+		pod install
+
+4. In case 'pod install' fails, you have to open your Xcode project, make sure your project's General Settings > Deployment Target is '7.0' or higher (Default Kha value is 6.0)
+
+5. After installation, open the generated '.xcworkspace' project file in path/to/your/game/builds/ios-build instead of the '.xcodeproj' file
+
+6. Build, and enjoy!
+
+7. In case of compile error, try setting "Enable Bitcode" to "No" (reference: http://stackoverflow.com/questions/31205133/how-to-enable-bitcode-in-xcode-7)
 
 ## Usage
 
@@ -78,8 +100,8 @@ Simple Google Analytics library for Kha
 
 2. Now you can use google analytics methods, example:
 
-		wyn.WynGA.sendEvent('advertisement', 'video', 'start');
+		wyn.WynGA.sendEvent('advertisement', 'video', 'start', '');
 		wyn.WynGA.sendSocial('facebook', 'feed', currentUrl);
-		wyn.WynGA.sendTiming('gameplay', 'session', milisecond);
+		wyn.WynGA.sendTiming('gameplay', 'session', milisecond, '');
 
 

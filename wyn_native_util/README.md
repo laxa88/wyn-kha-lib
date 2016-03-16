@@ -20,7 +20,7 @@ Simple utility library for Kha
 - No additional steps.
 
 ### iOS
-- none yet
+- No additional steps.
 
 ## Usage
 
