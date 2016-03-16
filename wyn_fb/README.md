@@ -123,7 +123,7 @@ Reference:
 
 		https://developers.facebook.com/docs/ios
 
-2. Drag-and-drop the following files into your XCode project's "Frameworks" folder. Note: I tried using "Link Binary With Libraries" to add the frameworks, but it didn't work, hence I had to drag-and-drop.
+2. Drag-and-drop the following files into your XCode project's "Frameworks" folder. Note: I tried using "Link Binary With Libraries" to add the frameworks, but it didn't work, hence I had to drag-and-drop. Make sure to check "Copy items if needed".
 
 		FBSDKCoreKit.Framework
 		FBSDKLoginKit.Framework

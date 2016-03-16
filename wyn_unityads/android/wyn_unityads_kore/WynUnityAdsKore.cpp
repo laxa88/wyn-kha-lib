@@ -36,17 +36,17 @@ namespace WynUnityAdsKore
 		detachThread();
 	}
 
-	void changeActivity ()
-	{
-		LOG("changeActivity");
+	// void changeActivity ()
+	// {
+	// 	LOG("changeActivity");
 
-		attachThread();
+	// 	attachThread();
 
-		jmethodID methodId = env->GetStaticMethodID(cls, "changeActivity", "()V");
-		env->CallStaticVoidMethod(cls, methodId);
+	// 	jmethodID methodId = env->GetStaticMethodID(cls, "changeActivity", "()V");
+	// 	env->CallStaticVoidMethod(cls, methodId);
 
-		detachThread();
-	}
+	// 	detachThread();
+	// }
 
 	void setDebugMode (bool val)
 	{

@@ -13,8 +13,8 @@ class WynUnityAds
 	@:functionCode('WynUnityAdsKore::init(id);')
 	public static function init (id:String) : Void {}
 
-	@:functionCode('WynUnityAdsKore::changeActivity();')
-	public static function changeActivity () : Void {}
+	// @:functionCode('WynUnityAdsKore::changeActivity();')
+	// public static function changeActivity () : Void {}
 
 	@:functionCode('WynUnityAdsKore::setDebugMode(val);')
 	public static function setDebugMode (val:Bool) : Void {}
@@ -40,7 +40,7 @@ class WynUnityAds
 class WynUnityAds
 {
 	public static function init (id:String) : Void {}
-	public static function changeActivity () : Void {}
+	// public static function changeActivity () : Void {}
 	public static function setDebugMode (val:Bool) : Void {}
 	public static function setTestMode (val:Bool) : Void {}
 	public static function setZone (zone:String) : Void {}
