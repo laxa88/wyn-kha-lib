@@ -26,13 +26,21 @@ namespace WynGAKore
 		NSLog(@"WynGAKore sendEvent : %s , %s , %s , %s", category, action, label, value);
 
 		// Retrieve tracker with placeholder property ID.
-		NSString *sCategory = [NSString stringWithUTF8String:category];
-		NSString *sAction = [NSString stringWithUTF8String:action];
-		NSString *sLabel = [NSString stringWithUTF8String:label];
-		NSString *sValue = [NSString stringWithUTF8String:value];
-		NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-		f.numberStyle = NSNumberFormatterDecimalStyle;
-		NSNumber *nValue = [f numberFromString:sValue];
+		NSString *sCategory = nil;
+		NSString *sAction = nil;
+		NSString *sLabel = nil;
+		NSString *sValue = nil;
+		NSNumber *nValue = nil;
+
+		if (category != nil) sCategory = [NSString stringWithUTF8String:category];
+		if (action != nil) sAction = [NSString stringWithUTF8String:action];
+		if (label != nil) sLabel = [NSString stringWithUTF8String:label];
+		if (value != nil) {
+			sValue = [NSString stringWithUTF8String:value];
+			NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+			f.numberStyle = NSNumberFormatterDecimalStyle;
+			nValue = [f numberFromString:sValue];
+		}
 
 		// DEBUG
 		// NSLog(@"WynGAKore sendEvent : %@ , %@ , %@ , %@ , %@", sCategory, sAction, sLabel, sValue, nValue);
@@ -45,9 +53,13 @@ namespace WynGAKore
 		// https://developers.google.com/analytics/devguides/collection/ios/v3/social
 		NSLog(@"WynGAKore sendSocial : %s , %s , %s", network, action, target);
 
-		NSString *sNetwork = [NSString stringWithUTF8String:network];
-		NSString *sAction = [NSString stringWithUTF8String:action];
-		NSString *sTarget = [NSString stringWithUTF8String:target];
+		NSString *sNetwork = nil;
+		NSString *sAction = nil;
+		NSString *sTarget = nil;
+
+		if (network != nil) sNetwork = [NSString stringWithUTF8String:network];
+		if (action != nil) sAction = [NSString stringWithUTF8String:action];
+		if (target != nil) sTarget = [NSString stringWithUTF8String:target];
 
 		// DEBUG
 		// NSLog(@"WynGAKore sendSocial : %@ , %@ , %@", sNetwork, sAction, sTarget);
@@ -60,13 +72,21 @@ namespace WynGAKore
 		// https://developers.google.com/analytics/devguides/collection/ios/v3/usertimings
 		NSLog(@"WynGAKore sendTiming : %s , %s , %s , %s", category, variable, value, label);
 
-		NSString *sCategory = [NSString stringWithUTF8String:category];
-		NSString *sName = [NSString stringWithUTF8String:variable];
-		NSString *sValue = [NSString stringWithUTF8String:value];
-		NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-		f.numberStyle = NSNumberFormatterDecimalStyle;
-		NSNumber *nValue = [f numberFromString:sValue];
-		NSString *sLabel = [NSString stringWithUTF8String:label];
+		NSString *sCategory = nil;
+		NSString *sName = nil;
+		NSString *sValue = nil;
+		NSString *sLabel = nil;
+		NSNumber *nValue = nil;
+
+		if (category != nil) sCategory = [NSString stringWithUTF8String:category];
+		if (variable != nil) sName = [NSString stringWithUTF8String:variable];
+		if (value != nil) {
+			sValue = [NSString stringWithUTF8String:value];
+			NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+			f.numberStyle = NSNumberFormatterDecimalStyle;
+			nValue = [f numberFromString:sValue];
+		}
+		if (label != nil) sLabel = [NSString stringWithUTF8String:label];
 
 		// DEBUG
 		// NSLog(@"WynGAKore sendTiming : %@ , %@ , %@ , %@ , %@", sCategory, sName, sValue, sLabel, nValue);
