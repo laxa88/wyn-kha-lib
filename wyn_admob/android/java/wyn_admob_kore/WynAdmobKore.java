@@ -1,6 +1,7 @@
 package wyn_admob_kore;
 
 import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -124,6 +125,7 @@ public class WynAdmobKore {
 
 				// Create generic popup on top of game
 				PopupWindow popup = new PopupWindow(kactivity);
+				popup.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
 				int padding = 10;
 				int oriW = 320 + padding;
