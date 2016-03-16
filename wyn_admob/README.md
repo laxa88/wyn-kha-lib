@@ -29,10 +29,9 @@ Reference:
 
 1. Download GoogleMobileAds.framework from this page: (https://developers.google.com/admob/ios/download)
 
-2. Include GoogleMobileAds.framework into your XCode project.
-	* In your project settings, go to "Build Phases" tab
-	* In "Link Binary with Libraries" section, click on "+" button
-	* Click "Add Other..." button and select your downloaded "GoogleMobileAds.framework" file
+2. Drag-and-drop the following into your XCode project's Frameworks folder:
+
+		GoogleMobileAds.framework
 
 ## Usage
 

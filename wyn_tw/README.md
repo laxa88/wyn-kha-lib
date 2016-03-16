@@ -22,7 +22,7 @@ Simple Twitter library for Kha
 
 ### iOS
 
-- none yet
+- No additional steps.
 
 ## Usage
 
