@@ -35,7 +35,7 @@ public class WynAdmobBannerListener extends AdListener {
         // ERROR_CODE_NO_FILL = 3
 
         // Code to be executed when an ad request fails.
-        Log.d("WynLog", "WynAdmobBannerListener NativeDidFailToReceiveAdWithError2 : " + errorCode);
+        Log.d("WynLog", "WynAdmobBannerListener NativeDidFailToReceiveAdWithError : " + errorCode);
         NativeDidFailToReceiveAdWithError(Integer.toString(errorCode));
     }
 

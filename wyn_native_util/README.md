@@ -16,10 +16,12 @@ Simple utility library for Kha
 
 2. Manually copy 'wyn_native_util.js' from 'wyn_native_util/html5' into your 'builds/html5' folder
 
-### Android
+### Android (Android Studio additional steps)
+
 - No additional steps.
 
 ### iOS
+
 - No additional steps.
 
 ## Usage

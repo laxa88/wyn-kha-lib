@@ -45,7 +45,7 @@ Reference:
 	https://developers.facebook.com/docs/android/getting-started/
 	https://developers.facebook.com/docs/sharing/android
 
-1. In your android project's 'AndroidManifest.xml', add:
+1. Add in 'AndroidManifest.xml' (usually right before your <application> tag):
 
 		<uses-permission android:name="android.permission.INTERNET"/>
 
