@@ -46,7 +46,7 @@ public class WynUnityAdsKore implements IUnityAdsListener {
 		// everywhere, or you explicitly call setZone always before
 		// calling show.
 
-		// example: "12540-1392899280"
+		// examples: "12540-1392899280", "video", "rewardedVideo"
 		UnityAds.setZone(zone);
 	}
 
