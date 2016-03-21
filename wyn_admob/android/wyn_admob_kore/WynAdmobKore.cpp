@@ -62,18 +62,18 @@ namespace WynAdmobKore
 		adViewWillLeaveApplication = f;
 	}
 
-	void createBanner (const char* adName, const char* adUnitId, const char* adType, const char* adGravity)
+	void createBanner (const char* adName, const char* adUnitId, const char* adType, const char* adGravity, bool visible)
 	{
 		LOG("createBanner");
 
 		attachThread();
 
-		jmethodID methodId = env->GetStaticMethodID(cls, "createBanner", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
+		jmethodID methodId = env->GetStaticMethodID(cls, "createBanner", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V");
 		jstring jadName = env->NewStringUTF(adName);
 		jstring jadUnitId = env->NewStringUTF(adUnitId);
 		jstring jadType = env->NewStringUTF(adType);
 		jstring jadGravity = env->NewStringUTF(adGravity);
-		env->CallStaticVoidMethod(cls, methodId, jadName, jadUnitId, jadType, jadGravity);
+		env->CallStaticVoidMethod(cls, methodId, jadName, jadUnitId, jadType, jadGravity, visible);
 
 		detachThread();
 	}

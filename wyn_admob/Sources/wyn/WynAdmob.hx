@@ -20,8 +20,8 @@ class WynAdmob
 	@:functionCode('WynAdmobKore::setBannerCallbacks(adViewDidReceiveAd,didFailToReceiveAdWithError,adViewWillPresentScreen,adViewWillDismissScreen,adViewDidDismissScreen,adViewWillLeaveApplication);')
 	public static function setBannerCallbacks (adViewDidReceiveAd:Void->Void, didFailToReceiveAdWithError:String->Void, adViewWillPresentScreen:Void->Void, adViewWillDismissScreen:Void->Void, adViewDidDismissScreen:Void->Void, adViewWillLeaveApplication:Void->Void) {}
 
-	@:functionCode('WynAdmobKore::createBanner(adName, adUnitId, adType, adGravity);')
-	public static function createBanner (adName:String, adUnitId:String, adType:String, adGravity:String) : Void {}
+	@:functionCode('WynAdmobKore::createBanner(adName, adUnitId, adType, adGravity, visible);')
+	public static function createBanner (adName:String, adUnitId:String, adType:String, adGravity:String, visible:Bool) : Void {}
 
 	@:functionCode('WynAdmobKore::toggleBanner(adName, visible);')
 	public static function toggleBanner (adName:String, visible:Bool) : Void {}

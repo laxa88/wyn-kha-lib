@@ -84,7 +84,7 @@ namespace WynAdmobKore
 		};
 	}
 
-	void createBanner (const char* adName, const char* adUnitId, const char* adType, const char* adGravity)
+	void createBanner (const char* adName, const char* adUnitId, const char* adType, const char* adGravity, bool visible)
 	{
 		NSLog(@"WynAdmobKore createBanner : %s %s %s", adName, adType, adGravity);
 
@@ -112,6 +112,7 @@ namespace WynAdmobKore
         // bannerView.adUnitID = [NSString stringWithUTF8String:@"ca-app-pub-3940256099942544/6300978111"]; // admob test banner
 		bannerView.adSize = size;
 		bannerView.delegate = bvc;
+		bannerView.hidden = visible;
 		[bannerView loadRequest:adReq];
 		[window addSubview:bannerView];
 		// bannerView.backgroundColor = [UIColor redColor]; // uncomment to see if banner is visible

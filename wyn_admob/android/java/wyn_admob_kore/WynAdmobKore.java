@@ -62,7 +62,7 @@ public class WynAdmobKore {
 		ml = new LinearLayout(kactivity);
 	}
 
-	public static void createBanner (String adName, String adUnitId, String adType, String adGravity) {
+	public static void createBanner (String adName, String adUnitId, String adType, String adGravity, boolean visible) {
 
 		Log.d("WynLog", "WynAdmobKore createAd : " + adName + " , " + adType + " , " + adUnitId + " , " + adGravity);
 
@@ -109,6 +109,7 @@ public class WynAdmobKore {
 		final AdView uiAdView = adView;
 		final int uiAdGravity = gravity;
 		final String uiAdType = adType;
+		final boolean uiVisible = visible;
 
 		kactivity.runOnUiThread(new Runnable() {
 			public void run() {
@@ -187,8 +188,12 @@ public class WynAdmobKore {
 				WynAdmobData data = new WynAdmobData();
 				data.gravity = uiAdGravity;
 				data.popup = popup;
-				data.popup.showAtLocation(ml, uiAdGravity, 0, 0); // show ad by default
-				data.popup.update();
+
+				if (uiVisible) {
+					data.popup.showAtLocation(ml, uiAdGravity, 0, 0);
+					data.popup.update();
+				}
+
 				bannerDict.put(uiAdName, data);
 			}
 		});
