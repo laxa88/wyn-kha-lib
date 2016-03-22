@@ -11,29 +11,10 @@ import com.google.android.gms.analytics.Tracker;
 // http://stackoverflow.com/questions/30527369/error-could-not-find-com-google-gmsgoogle-services1-0-when-adding-google-ser
 // https://guides.codepath.com/android/Getting-Started-with-Gradle
 
-/*
-
-Instructions for usage in Android Studio:
-
-1) In AndroidManifest.xml, add this inside <application>:
-
-	<uses-permission android:name="android.permission.INTERNET"/>
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
-2) In app-level build.gradle, add this in model.android (after defaultConfig)
-
-	dependencies {
-		compile 'com.google.android.gms:play-services-analytics:8.4.0'
-	}
-
-3) Make sure gradle sync doesn't produce errors
-
-*/
-
 public class WynGAKore {
 	private static Tracker mTracker;
 
-	synchronized public static void init (String id) {
+	synchronized public static void init (String id, boolean enableAdvertisingTracking) {
 		// NOTE: id isn't used, because it's set from 'google-services.json' config
 		// file, refer to this link for instructions to get the json:
 		// https://developers.google.com/analytics/devguides/collection/android/v4/
@@ -43,6 +24,11 @@ public class WynGAKore {
 			KoreActivity activity = KoreActivity.getInstance();
 			GoogleAnalytics analytics = GoogleAnalytics.getInstance(activity);
 			mTracker = analytics.newTracker("default");
+
+            if (enableAdvertisingTracking) {
+                // https://support.google.com/analytics/answer/2444872?hl=en&utm_id=ad#web
+                mTracker.enableAdvertisingIdCollection(true);
+            }
 		}
 
 		Log.d("WynLog", "WynGAKore init : " + id);

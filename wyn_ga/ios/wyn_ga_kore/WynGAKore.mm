@@ -7,7 +7,7 @@ namespace WynGAKore
 	GAI *gInstance;
 	id<GAITracker> gTracker;
 
-	void init (const char* id)
+	void init (const char* id, bool enableAdvertisingTracking)
 	{
 		NSLog(@"WynGAKore init : %s", id);
 
@@ -18,6 +18,12 @@ namespace WynGAKore
 		// Initialize a tracker using a Google Analytics property ID.
 		gInstance = [GAI sharedInstance];
 		gTracker = [gInstance trackerWithTrackingId:[NSString stringWithUTF8String:id]];
+
+		if (enableAdvertisingTracking) {
+			// https://support.google.com/analytics/answer/2444872?hl=en&utm_id=ad#web
+			// Enable IDFA collection.
+			gTracker.allowIDFACollection = YES;
+		}
 	}
 
 	void sendEvent (const char* category, const char* action, const char* label, const char* value)

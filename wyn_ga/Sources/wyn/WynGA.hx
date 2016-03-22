@@ -11,7 +11,7 @@ package wyn;
 @:native('wyn_ga')
 extern class WynGA
 {
-	public static function init (id:String) : Void;
+	public static function init (id:String, enableAdvertisingTracking:Bool) : Void;
 	public static function sendEvent (category:String, action:String, label:String, value:String) : Void;
 	public static function sendSocial (network:String, action:String, target:String) : Void;
 	public static function sendTiming (category:String, variable:String, value:String, label:String) : Void;
@@ -25,8 +25,8 @@ extern class WynGA
 
 class WynGA
 {
-	@:functionCode('WynGAKore::init(id);')
-	public static function init (id:String) : Void {}
+	@:functionCode('WynGAKore::init(id, enableAdvertisingTracking);')
+	public static function init (id:String, enableAdvertisingTracking:Bool) : Void {}
 
 	@:functionCode('WynGAKore::sendEvent(category, action, label, value);')
 	public static function sendEvent (category:String, action:String, label:String, value:String) : Void {}
@@ -42,7 +42,7 @@ class WynGA
 
 class WynGA
 {
-	public static function init (id:String) : Void {}
+	public static function init (id:String, enableAdvertisingTracking:Bool) : Void {}
 	public static function sendEvent (category:String, action:String, label:String, value:String) : Void {}
 	public static function sendSocial (network:String, action:String, target:String) : Void {}
 	public static function sendTiming (category:String, variable:String, value:String, label:String) : Void {}

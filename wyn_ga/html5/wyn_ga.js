@@ -9,9 +9,10 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 	window.wyn_ga = {
 
-		init : function (id) {
+		init : function (id, enableAdvertiserTracking) {
 
 			ga('create', id, 'auto'); // Coinflip studios GA id
+			if (enableAdvertiserTracking) ga('require', 'displayfeatures');
 			ga('send', 'pageview');
 			this.isInit = true;
 

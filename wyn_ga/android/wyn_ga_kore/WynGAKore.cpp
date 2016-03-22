@@ -18,15 +18,15 @@ namespace WynGAKore
 		kactivity->vm->DetachCurrentThread();
 	}
 	
-	void init (const char* id)
+	void init (const char* id, bool enableAdvertisingTracking)
 	{
 		kactivity = KoreAndroid::getActivity();
 
 		attachThread();
 
-		jmethodID methodId = env->GetStaticMethodID(cls, "init", "(Ljava/lang/String;)V");
+		jmethodID methodId = env->GetStaticMethodID(cls, "init", "(Ljava/lang/String;Z)V");
 		jstring jid = env->NewStringUTF(id);
-		env->CallStaticVoidMethod(cls, methodId, jid);
+		env->CallStaticVoidMethod(cls, methodId, jid, enableAdvertisingTracking);
 
 		detachThread();
 	}
