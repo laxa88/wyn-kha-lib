@@ -45,7 +45,7 @@ class WynAdmob
 {
 	public static function init () : Void {}
 	public static function setBannerCallbacks (adViewDidReceiveAd:Void->Void, didFailToReceiveAdWithError:String->Void, adViewWillPresentScreen:Void->Void, adViewWillDismissScreen:Void->Void, adViewDidDismissScreen:Void->Void, adViewWillLeaveApplication:Void->Void) {}
-	public static function createBanner (adName:String, adUnitId:String, adType:String, adGravity:String) : Void {}
+	public static function createBanner (adName:String, adUnitId:String, adType:String, adGravity:String, visible:Bool) : Void {}
 	public static function toggleBanner (adName:String, visible:Bool) : Void {}
 	public static function setInterstitialCallbacks (interstitialDidReceiveAd:Void->Void, didFailToReceiveAdWithError:String->Void, interstitialWillPresentScreen:Void->Void, interstitialWillDismissScreen:Void->Void, interstitialDidDismissScreen:Void->Void, interstitialWillLeaveApplication:Void->Void) {}
 	public static function createInterstitial (adUnitId:String) : Void {}
