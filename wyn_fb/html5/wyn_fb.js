@@ -13,7 +13,7 @@
 
 			// We're only saving the appId here in case FB API is not loaded.
 			// (e.g. caused by popup blockers, etc.)
-			console.log("init FB app Id : " + appId);
+			// console.log("init FB app Id : " + appId);
 			fbAppId = appId;
 
 		},
