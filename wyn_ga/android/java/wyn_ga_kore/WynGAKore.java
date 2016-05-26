@@ -11,10 +11,13 @@ import com.google.android.gms.analytics.Tracker;
 // http://stackoverflow.com/questions/30527369/error-could-not-find-com-google-gmsgoogle-services1-0-when-adding-google-ser
 // https://guides.codepath.com/android/Getting-Started-with-Gradle
 
+// TODO 2016-05-26
+// allow multiple trackers via "name" variable
+
 public class WynGAKore {
 	private static Tracker mTracker;
 
-	synchronized public static void init (String id, boolean enableAdvertisingTracking) {
+	synchronized public static void init (String id, String name, boolean enableAdvertisingTracking) {
 		// NOTE: id isn't used, because it's set from 'google-services.json' config
 		// file, refer to this link for instructions to get the json:
 		// https://developers.google.com/analytics/devguides/collection/android/v4/
@@ -34,7 +37,7 @@ public class WynGAKore {
 		Log.d("WynLog", "WynGAKore init : " + id);
 	}
 
-	public static void sendEvent (String category, String action, String label, String value) {
+	public static void sendEvent (String name, String category, String action, String label, String value) {
         if (mTracker == null) {
             Log.e("WynLog", "sendEvent error, mTracker is null");
             return;
@@ -50,7 +53,7 @@ public class WynGAKore {
         Log.d("WynLog", "WynGAKore sendEvent : " + category + " , " + action + " , " + label + " , " + value);
 	}
 
-	public static void sendSocial (String network, String action, String target) {
+	public static void sendSocial (String name, String network, String action, String target) {
         if (mTracker == null) {
             Log.e("WynLog", "sendSocial error, mTracker is null");
             return;
@@ -65,7 +68,7 @@ public class WynGAKore {
 		Log.d("WynLog", "WynGAKore sendSocial : " + network + " , " + action + " , " + target);
 	}
 
-	public static void sendTiming (String category, String variable, String value, String label) {
+	public static void sendTiming (String name, String category, String variable, String value, String label) {
         if (mTracker == null) {
             Log.e("WynLog", "sendTiming error, mTracker is null");
             return;

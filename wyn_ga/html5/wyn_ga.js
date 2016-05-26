@@ -9,16 +9,40 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 	window.wyn_ga = {
 
-		init : function (id, enableAdvertiserTracking) {
+		init : function (id, name, enableAdvertiserTracking) {
 
-			ga('create', id, 'auto'); // Coinflip studios GA id
-			if (enableAdvertiserTracking) ga('require', 'displayfeatures');
-			ga('send', 'pageview');
+			// for 'enableAdvertiserTracking'
+			// https://developers.google.com/analytics/devguides/collection/analyticsjs/display-features
+			// used for demographic tracking in my case
+
+			// https://developers.google.com/analytics/devguides/collection/analyticsjs/creating-trackers
+			// e.g.
+			// id = 'UA-XXXXX-Y'
+			// name = 'myTracker'
+			if (name != null && name != "")
+			{
+				ga('create', id, 'auto', name);
+				if (enableAdvertiserTracking) ga(name+'.require', 'displayfeatures');
+				ga(name+'.send', 'pageview'); // e.g. myTracker.send
+			}
+			else
+			{
+				ga('create', id, 'auto');
+				if (enableAdvertiserTracking) ga('require', 'displayfeatures');
+
+				// unused for now
+				// ga('create', id, 'auto', {'allowLinker': true});
+				// ga('require', 'linker');
+				// ga('linker:autoLink', ['funfe.com'] );
+
+				ga('send', 'pageview');
+			}
+
 			this.isInit = true;
 
 		},
 		
-		sendEvent : function (category, action, label, value) {
+		sendEvent : function (name, category, action, label, value) {
 
 			if (!this.isInit)
 			{
@@ -27,32 +51,35 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 			}
 
 			// NOTE: category is required at least
+			// example: sendEvent('', 'link', 'click', 'http://example.com');
+			// example: sendEvent('', 'video', 'play', 'cats.mp4');
 
-			// example: sendEvent('link', 'click', 'http://example.com');
-			// example: sendEvent('video', 'play', 'cats.mp4');
+			var sendStr = "send";
+			if (name != null && name != "")
+				sendStr = name + ".send"; // e.g. myTracker.send
 
-			console.log("sendEvent : " + category + " , " + action + " , " + label + " , " + value);
+			console.log("sendEvent : " + sendStr + " , " + category + " , " + action + " , " + label + " , " + value);
 
 			if (action != null) {
 				if (label != null) {
 					if (value != null) {
-						ga('send', 'event', category, action, label, value);
+						ga(sendStr, 'event', category, action, label, value);
 					}
 					else {
-						ga('send', 'event', category, action, label);
+						ga(sendStr, 'event', category, action, label);
 					}
 				}
 				else {
-					ga('send', 'event', category, action);
+					ga(sendStr, 'event', category, action);
 				}
 			}
 			else {
-				ga('send', 'event', category);
+				ga(sendStr, 'event', category);
 			}
 
 		},
 
-		sendSocial : function (network, action, target) {
+		sendSocial : function (name, network, action, target) {
 
 			if (!this.isInit)
 			{
@@ -62,23 +89,27 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 			// NOTE: network is required at least
 
-			console.log("sendSocial : " + network + " , " + action + " , " + target);
+			var sendStr = "send";
+			if (name != null && name != "")
+				sendStr = name + ".send"; // e.g. myTracker.send
+
+			console.log("sendSocial : " + sendStr + " , " + network + " , " + action + " , " + target);
 
 			if (action != null) {
 				if (target != null) {
-					ga('send', 'social', network, action, target);
+					ga(sendStr, 'social', network, action, target);
 				}
 				else {
-					ga('send', 'social', network, action);
+					ga(sendStr, 'social', network, action);
 				}
 			}
 			else {
-				ga('send', 'social', network);
+				ga(sendStr, 'social', network);
 			}
 
 		},
 
-		sendTiming : function (category, variable, value, label) {
+		sendTiming : function (name, category, variable, value, label) {
 
 			if (!this.isInit)
 			{
@@ -88,23 +119,27 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 			// NOTE: category is required at least
 
-			console.log("sendTiming : " + category + " , " + variable + " , " + value + " , " + label);
+			var sendStr = "send";
+			if (name != null && name != "")
+				sendStr = name + ".send"; // e.g. myTracker.send
+
+			console.log("sendTiming : " + sendStr + " , " + category + " , " + variable + " , " + value + " , " + label);
 
 			if (variable != null) {
 				if (value != null) {
 					if (label != null) {
-						ga('send', 'timing', category, variable, value, label);
+						ga(sendStr, 'timing', category, variable, value, label);
 					}
 					else {
-						ga('send', 'timing', category, variable, value);
+						ga(sendStr, 'timing', category, variable, value);
 					}
 				}
 				else {
-					ga('send', 'timing', category, variable);
+					ga(sendStr, 'timing', category, variable);
 				}
 			}
 			else {
-				ga('send', 'timing', category);
+				ga(sendStr, 'timing', category);
 			}
 
 		}

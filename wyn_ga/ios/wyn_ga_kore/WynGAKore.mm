@@ -7,7 +7,10 @@ namespace WynGAKore
 	GAI *gInstance;
 	id<GAITracker> gTracker;
 
-	void init (const char* id, bool enableAdvertisingTracking)
+	// TODO 2016-05-26
+	// allow multiple trackers via "name" variable
+
+	void init (const char* id, const char* name, bool enableAdvertisingTracking)
 	{
 		NSLog(@"WynGAKore init : %s", id);
 
@@ -26,7 +29,7 @@ namespace WynGAKore
 		}
 	}
 
-	void sendEvent (const char* category, const char* action, const char* label, const char* value)
+	void sendEvent (const char* name, const char* category, const char* action, const char* label, const char* value)
 	{
 		// https://developers.google.com/analytics/devguides/collection/ios/v3/events
 		NSLog(@"WynGAKore sendEvent : %s , %s , %s , %s", category, action, label, value);
@@ -54,7 +57,7 @@ namespace WynGAKore
 		[gTracker send:[[GAIDictionaryBuilder createEventWithCategory:sCategory action:sAction label:sLabel value:nValue] build]];
 	}
 
-	void sendSocial (const char* network, const char* action, const char* target)
+	void sendSocial (const char* name, const char* network, const char* action, const char* target)
 	{
 		// https://developers.google.com/analytics/devguides/collection/ios/v3/social
 		NSLog(@"WynGAKore sendSocial : %s , %s , %s", network, action, target);
@@ -73,7 +76,7 @@ namespace WynGAKore
 		[gTracker send:[[GAIDictionaryBuilder createSocialWithNetwork:sNetwork action:sAction target:sTarget] build]];
 	}
 
-	void sendTiming (const char* category, const char* variable, const char* value, const char* label)
+	void sendTiming (const char* name, const char* category, const char* variable, const char* value, const char* label)
 	{
 		// https://developers.google.com/analytics/devguides/collection/ios/v3/usertimings
 		NSLog(@"WynGAKore sendTiming : %s , %s , %s , %s", category, variable, value, label);
