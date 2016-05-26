@@ -29,11 +29,13 @@
 		// that deal with handling post-roll ads via videoContent.onended
 
 		// Request video ads.
+		// types of testable ad videos:
+		// https://developers.google.com/interactive-media-ads/docs/sdks/html5/tags
+		
+		// note to self:
+		// this is the test ad, don't forget to replace this later
 		adsRequest = new google.ima.AdsRequest();
-		// adsRequest.adTagUrl = 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=';
-		adsRequest.adTagUrl = 'http://googleads.g.doubleclick.net/pagead/ads?ad_type=video&client=ca-games-pub-4968145218643279&videoad_start_delay=0&description_url=http%3A%2F%2Fwww.google.com&max_ad_duration=40000&adtest=on';
-		// adsRequest.adTagUrl = 'http://googleads.g.doubleclick.net/pagead/ads?ad_type=video_image_flash_text&client=ca-video-pub-4968145218643279&videoad_start_delay=0&description_url=http%3A%2F%2Fwww.google.com&max_ad_duration=40000';
-		// adsRequest.adTagUrl = 'http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vmap1&unviewed_position_start=1&cust_params=sample_ar%3Dpremidpostpod%26deployment%3Dgmf-js&cmsid=496&vid=short_onecue&correlator=';
+		adsRequest.adTagUrl = 'http://googleads.g.doubleclick.net/pagead/ads?ad_type=video&client=ca-video-pub-4968145218643279&videoad_start_delay=0&description_url=http%3A%2F%2Fwww.google.com&max_ad_duration=40000&adtest=on';
 
 		// Specify the linear and nonlinear slot sizes. This helps the SDK to
 		// select the correct creative if multiple are returned.
